@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ Task.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .task-container {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .task-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .task-label {
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .btn-complete {
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+
+{% include 'header.html' %}
+
+<div class="container mt-5">
+    <div class="task-container">
+        <h2>{{ Task.title }}</h2>
+
+        <p class="task-label">📝 Description:</p>
+        <p>{{ Task.description }}</p>
+
+        <p class="task-label">👤 Author:</p>
+        <p>{{ Task.author }}</p>
+
+        <p class="task-label">🗒️ Note:</p>
+        <p>{{ Task.note }}</p>
+
+        {% if Task.imageURL %}
+            <img src="{{ url_for('static', filename=Task.imageURL.replace('static/', '')) }}"
+                 alt="Task Image"
+                 class="task-image">
+        {% endif %}
+
+        {% if not Task.is_completed %}
+            <form method="POST" action="{{ url_for('complete_task', task_id=Task.id) }}" onsubmit="return confirm('Are you sure you want to mark this task as completed?');">
+                <button type="submit" class="btn btn-primary btn-block btn-complete">✅ Mark as Completed</button>
+            </form>
+        {% else %}
+            <button class="btn btn-success btn-block btn-complete" disabled>✅ Already Completed</button>
+        {% endif %}
+    </div>
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>

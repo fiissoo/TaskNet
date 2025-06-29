@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tasknet</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.web-fonts.ge/fonts/alk-sanet/css/alk-sanet.min.css">
+    <link rel="icon" type="image/png" href="/static/logo.png">
+
+    <style>
+        body {
+            font-family: "ALK Sanet", sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        .main-box {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .stats-list {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .stats-list li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .card-box {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+{% include "header.html" %}
+
+<div class="main-box">
+    <div class="stats-list">
+        <h4>📊 Your Task Statistics</h4>
+        <ul class="list-unstyled mt-3">
+            <li><strong>Total tasks:</strong> {{ total_tasks }}</li>
+            <li><strong>Completed tasks:</strong> {{ completed_count }}</li>
+            <li><strong>Incomplete tasks:</strong> {{ incomplete_count }}</li>
+            <li><strong>Overdued tasks:</strong> {{ overdue_count }}</li>
+        </ul>
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Recent Tasks</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-md-5 mb-4">
+                <a href="/Recent" class="text-decoration-none text-dark">
+                    <div class="p-4 bg-white border rounded card-box text-center h-100">
+                        <h4 class="font-weight-bold">🆕 New Assignments</h4>
+                        <p class="mt-2 text-muted">Start working on the latest tasks assigned to you. Stay ahead by tackling your newest responsibilities first.</p>
+                    </div>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>

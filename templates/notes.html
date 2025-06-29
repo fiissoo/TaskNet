@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tasknet - Notes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.web-fonts.ge/fonts/alk-sanet/css/alk-sanet.min.css">
+    <link rel="icon" type="image/png" href="/static/logo.png">
+    <style>
+        body {
+            font-family: "ALK Sanet", sans-serif;
+            background-color: #f2f4f8;
+        }
+
+        .main-box {
+            max-width: 600px;
+            margin: 60px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .main-box h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.15rem rgba(0, 123, 255, 0.25);
+        }
+
+        button.btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: all 0.2s ease-in-out;
+        }
+
+        button.btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004fa3;
+        }
+
+        label {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+{% include "header.html" %}
+
+<div class="main-box">
+    <h3>📝 Add a Note to a Task</h3>
+    <form method="POST" action="{{ url_for('add_note') }}">
+        <div class="form-group">
+            <label for="taskSelect">Select Task</label>
+            <select class="form-control" id="taskSelect" name="task_title" required>
+                {% for task in tasks %}
+                    <option value="{{ task }}">{{ task }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="noteContent">Note</label>
+            <textarea class="form-control" id="noteContent" name="note" rows="5" placeholder="Write your note here..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mt-4">Save Note</button>
+    </form>
+</div>
+{% include "footer.html" %}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>

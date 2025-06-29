@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recent Tasks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <style>
+        a.task-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        a.task-link:hover {
+            background-color: #f8f9fa;
+        }
+
+        .task-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .task-item {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.2s;
+        }
+
+        .task-item:hover {
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-title {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .task-meta {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+{% include "header.html" %}
+
+<div class="container mt-5">
+    <h2 class="mb-4">🕒 Recently Created Tasks</h2>
+
+    {% if tasks %}
+        {% for task in tasks %}
+            <div class="task-item border">
+                <a class="task-link" href="{{ url_for('view_task', task_id=task[0]) }}">
+                    <h5 class="task-title">{{ task[3] }}</h5>
+                    <p class="task-meta"><strong>Created:</strong> {{ task[1] }} | <strong>Deadline:</strong> {{ task[2] }}</p>
+                    <p>{{ task[4] }}</p>
+                    {% if task[5] %}
+                        <img src="{{ url_for('static', filename=task[5].replace('static/', '')) }}" class="task-image" alt="Task Image">
+                    {% endif %}
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No tasks found.</p>
+    {% endif %}
+</div>
+
+{% include "footer.html" %}
+</body>
+</html>

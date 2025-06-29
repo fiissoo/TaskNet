@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ task[2] }} - Completed Task</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 700px;
+        }
+
+        .task-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+{% include "header.html" %}
+
+<div class="container mt-5">
+    <h2>✅ {{ task[2] }}</h2>
+    <p><strong>Deadline:</strong> {{ task[1] }}</p>
+    <p><strong>Description:</strong> {{ task[3] }}</p>
+
+    {% if task[4] %}
+        <img src="{{ url_for('static', filename=task[4].replace('static/', '')) }}" alt="Task Image" class="task-image">
+    {% endif %}
+</div>
+
+{% include "footer.html" %}
+</body>
+</html>
